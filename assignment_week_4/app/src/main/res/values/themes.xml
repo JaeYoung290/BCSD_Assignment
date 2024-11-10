@@ -1,9 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Base.Theme.Assignment_week_02" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@color/light_background</item>
+        <item name="android:textColor">@color/light_text_color</item>
     </style>
 
     <style name="Theme.Assignment_week_02" parent="Base.Theme.Assignment_week_02" />
+
+    <!-- TextView 색상 -->
+    <style name="TEXT">
+        <item name="android:textColor">@color/light_text_color</item>
+    </style>
+
+    <!-- EditText 색상 -->
+    <style name="EditTextStyle">
+        <item name="android:backgroundTint">@color/light_edit_text_background</item>
+        <item name="android:textColorHint">@color/light_hint_text_color</item>
+    </style>
+
+    <!-- Button 색상 -->
+    <style name="loginButton">
+        <item name="android:backgroundTint">@color/light_button_background</item>
+        <item name="android:textColor">@color/light_button_text_color</item>
+    </style>
 </resources>
