@@ -1,25 +1,16 @@
 package com.example.test
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
     private var count = 0
     private lateinit var countTextView: TextView
-
-    private val activityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val randomValue = result.data?.getIntExtra("randomValue", count)
-            count = randomValue ?: count
-            countTextView.text = count.toString()
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         countTextView = findViewById(R.id.countTextView)
 
         toastButton.setOnClickListener {
-            Toast.makeText(this, "Toast 메시지 출력", Toast.LENGTH_SHORT).show()
+            showAlertDialog()
         }
 
         countButton.setOnClickListener {
@@ -40,9 +31,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         randomButton.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("count", count)
-            activityLauncher.launch(intent)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SecondFragment.newInstance(count))
+                .addToBackStack(null)
+                .commit()
         }
+    }
+
+    private fun showAlertDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("AlertDialog")
+            .setPositiveButton("Positive") { dialog, _ ->
+                count = 0
+                countTextView.text = count.toString()
+                dialog.dismiss()
+            }
+            .setNeutralButton("Neutral") { dialog, _ ->
+                Toast.makeText(this, "Toast 메시지 출력", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+            .setNegativeButton("Negative") { dialog, _ ->
+                dialog.dismiss()
+            }
+        builder.create().show()
     }
 }
