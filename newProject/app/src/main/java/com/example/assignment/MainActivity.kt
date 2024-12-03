@@ -1,4 +1,4 @@
-package com.example.assignment_week_7
+package com.example.assignment
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
