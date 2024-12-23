@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">assignment</string>
+
+    <string name="notification_channel_name">Notification</string>
+    <string name="notification_channel_description">Random notifications</string>
+    <string name="notification_title">알림</string>
+    <string name="notification_content">랜덤 결과 화면으로 이동</string>
+    <string name="btn_more">더 보기</string>
+    <string name="btn_close">닫기</string>
 </resources>

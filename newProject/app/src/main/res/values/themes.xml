@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.Assignment" parent="Base.Theme.Assignment" />
+
+    <style name="custom_button_style" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/btn_custom</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:outlineProvider">none</item>
+        <item name="layout_constraintVertical_bias">0.15</item>
+    </style>
 </resources>

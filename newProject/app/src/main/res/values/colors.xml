@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--메인 화면 색상 정의-->
+    <color name="main_background_color">#2E5077</color>
+    <color name="main_button_color">#4DA1A9</color>
+    <color name="main_button_color_2">#79D7BE</color>
+    <color name="text_color">#F6F4F0</color>
 </resources>
