@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">assignment</string>
+    <string name="cancle">취소</string>
+    <string name="check">확인</string>
+    <!-- fragment_redirect_settings -->
+    <string name="description_permission_denied_text">파일을 보려면 권한을 허용해야 합니다.</string>
+    <string name="redirect_settings_text">설정으로 이동</string>
+</resources>
