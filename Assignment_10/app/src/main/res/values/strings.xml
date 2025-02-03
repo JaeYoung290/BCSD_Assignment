@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">assignment</string>
+
+    <!-- 타이머 텍스트 -->
+    <string name="timer_text">00 : 00 : 00</string>
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
+    <string name="lap">Lap</string>
+</resources>
