@@ -3,8 +3,9 @@ package com.example.assignment.feature_word.presentation.words.components
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.test_1.databinding.ItemWordBinding
+import com.example.assignment.databinding.ItemWordBinding
 import com.example.assignment.feature_word.domain.model.Word
 
 class WordAdapter : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
@@ -15,12 +16,12 @@ class WordAdapter : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
     inner class WordViewHolder(private val binding: ItemWordBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(word: Word) {
-            binding.apply {
-                tvItemWord.text = word.word
-                tvItemWordMeaning.text = word.meaning
+            binding.word = word
+            binding.executePendingBindings()
 
-                root.setOnClickListener {
-                    onItemClickListener?.invoke(word)
+            itemView.setOnClickListener {
+                onItemClickListener?.let { click ->
+                    click(word)
                 }
             }
         }
@@ -46,7 +47,7 @@ class WordAdapter : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newWords: List<Word>) {
-        this.words = newWords
+        words = newWords
         notifyDataSetChanged()
     }
 
@@ -56,5 +57,15 @@ class WordAdapter : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
     fun setOnItemClickListener(listener: (Word) -> Unit) {
         onItemClickListener = listener
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("items")
+        fun setItems(recyclerView: RecyclerView, items: List<Word>?) {
+            items?.let {
+                (recyclerView.adapter as? WordAdapter)?.setData(it)
+            }
+        }
     }
 }

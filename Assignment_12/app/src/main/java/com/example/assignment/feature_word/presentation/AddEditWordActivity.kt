@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import com.example.test_1.databinding.ActivityAddEditWordBinding
+import com.example.assignment.R
+import com.example.assignment.databinding.ActivityAddEditWordBinding
 import com.example.assignment.feature_word.presentation.add_edit_word.AddEditWordEvent
 import com.example.assignment.feature_word.presentation.add_edit_word.AddEditWordViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -20,8 +22,11 @@ class AddEditWordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddEditWordBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_edit_word)
+        binding.addEditWordViewModel = viewModel
+        binding.lifecycleOwner = this
+
 
         val wordId = intent.getIntExtra("wordId", -1)
         if (wordId != -1) {
@@ -34,18 +39,6 @@ class AddEditWordActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.wordName.observe(this) { word ->
-            if (binding.etAddEditWord.text.toString() != word) {
-                binding.etAddEditWord.setText(word)
-            }
-        }
-
-        viewModel.wordMeaning.observe(this) { meaning ->
-            if (binding.etAddEditMeaning.text.toString() != meaning) {
-                binding.etAddEditMeaning.setText(meaning)
-            }
-        }
-
         lifecycleScope.launch {
             viewModel.eventFlow.collect { event ->
                 when (event) {

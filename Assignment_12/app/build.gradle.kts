@@ -4,14 +4,15 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.example.test_1"
+    namespace = "com.example.assignment"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.test_1"
+        applicationId = "com.example.assignment"
         minSdk = 33
         versionCode = 1
         versionName = "1.0"

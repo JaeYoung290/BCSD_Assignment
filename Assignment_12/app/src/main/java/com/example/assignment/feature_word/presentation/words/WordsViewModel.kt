@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.assignment.feature_word.domain.model.Word
 import com.example.assignment.feature_word.domain.use_case.WordUseCases
-import com.example.assignment.feature_word.presentation.words.WordState
-import com.example.assignment.feature_word.presentation.words.WordsEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,6 +17,9 @@ class WordsViewModel @Inject constructor(
 
     private val _state = MutableLiveData(WordState())
     val state: LiveData<WordState> = _state
+
+    private val _selectedWord = MutableLiveData<Word?>()
+    val selectedWord: LiveData<Word?> = _selectedWord
 
     init {
         getWords()
@@ -33,11 +35,20 @@ class WordsViewModel @Inject constructor(
         }
     }
 
+    fun setSelectedWord(word: Word?) {
+        _selectedWord.value = word
+    }
+
+    fun clearSelectedWord() {
+        _selectedWord.value = null
+    }
+
     fun onEvent(event: WordsEvent) {
         when (event) {
             is WordsEvent.DeleteWord -> {
                 viewModelScope.launch {
                     wordUseCases.deleteWord(event.word)
+                    clearSelectedWord()
                 }
             }
         }
