@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="addEditWordViewModel"
+            type="com.example.assignment.feature_word.presentation.add_edit_word.AddEditWordViewModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp"
+            android:text="@string/add_edit_activity_title_text"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/word_name"
+            app:boxBackgroundMode="outline"
+            app:expandedHintEnabled="false"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_add_edit_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{addEditWordViewModel.wordName}"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_word_char_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/30"
+            android:textAlignment="viewEnd"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/word_meaning"
+            app:boxBackgroundMode="outline"
+            app:expandedHintEnabled="false"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_add_edit_meaning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{addEditWordViewModel.wordMeaning}"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_meaning_char_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="viewEnd"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_add_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/add"
+            android:textSize="16sp" />
+    </LinearLayout>
+</layout>

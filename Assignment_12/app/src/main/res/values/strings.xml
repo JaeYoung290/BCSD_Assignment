@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">assignment</string>
+    <string name="add">추가</string>
+    <string name="word_name">단어</string>
+    <string name="word_meaning">뜻</string>
+    <string name="add_edit_activity_title_text">단어 추가</string>
+</resources>
