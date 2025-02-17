@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.assignment.databinding.ItemWordBinding
 import com.example.assignment.feature_word.domain.model.Word
 
@@ -17,6 +19,11 @@ class WordAdapter : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(word: Word) {
             binding.word = word
+            word.imageUri?.let { uri ->
+                Glide.with(itemView.context)
+                    .load(uri)
+                    .into(binding.ivItemImage)
+            }
             binding.executePendingBindings()
 
             itemView.setOnClickListener {

@@ -41,6 +41,7 @@ class WordsViewModel @Inject constructor(
 
     fun clearSelectedWord() {
         _selectedWord.value = null
+
     }
 
     fun onEvent(event: WordsEvent) {

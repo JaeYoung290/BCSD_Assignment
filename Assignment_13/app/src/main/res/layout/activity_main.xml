@@ -9,92 +9,96 @@
             type="com.example.assignment.feature_word.presentation.words.WordsViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+        
+        <ImageView
+            android:id="@+id/iv_main_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="@+id/btn_main_delete"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_main_edit"
+            app:layout_constraintEnd_toStartOf="@+id/btn_main_delete" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_main_word"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="15dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@{wordsViewModel.selectedWord.word}"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_main_image"/>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_main_meaning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{wordsViewModel.selectedWord.meaning}"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_main_image"
+            app:layout_constraintStart_toStartOf="@+id/tv_main_word"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_word" />
 
-                <TextView
-                    android:id="@+id/tv_main_word"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{wordsViewModel.selectedWord.word}"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/btn_main_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_main_word" />
 
-                <TextView
-                    android:id="@+id/tv_main_word_meaning"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@{wordsViewModel.selectedWord.meaning}"
-                    android:textSize="17sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btn_main_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_delete" />
-
-                <ImageButton
-                    android:id="@+id/btn_main_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_edit" />
-            </LinearLayout>
-
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/btn_main_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintEnd_toEndOf="@id/btn_main_delete"
+            app:layout_constraintTop_toBottomOf="@+id/btn_main_delete" />
 
         <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
+            android:id="@+id/divider"
+            android:layout_width="0dp"
             android:layout_height="2dp"
+            android:layout_marginTop="5dp"
             app:dividerColor="@color/light_gray"
             app:dividerInsetEnd="16dp"
-            app:dividerInsetStart="16dp" />
+            app:dividerInsetStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_main_image" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main_word_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="10dp"
+            items="@{wordsViewModel.state.words}"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_main_word_list"
-                items="@{wordsViewModel.state.words}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp" />
+        <ImageButton
+            android:id="@+id/btn_main_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:src="@drawable/ic_add"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <ImageButton
-                android:id="@+id/btn_main_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|bottom"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/transparent"
-                android:src="@drawable/ic_add" />
-        </FrameLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

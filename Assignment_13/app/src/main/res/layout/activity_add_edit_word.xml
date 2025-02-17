@@ -9,29 +9,54 @@
             type="com.example.assignment.feature_word.presentation.add_edit_word.AddEditWordViewModel" />
     </data>
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp"
             android:text="@string/add_edit_activity_title_text"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_add_edit_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <Button
+            android:id="@+id/btn_add_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/add_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_add_edit_image" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+            android:id="@+id/til_word"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="@string/word_name"
             app:boxBackgroundMode="outline"
             app:expandedHintEnabled="false"
-            app:hintEnabled="true">
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_add_image">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_add_edit_word"
@@ -44,20 +69,27 @@
 
         <TextView
             android:id="@+id/tv_word_char_count"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="0/30"
             android:textAlignment="viewEnd"
             android:textColor="#666666"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_word" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+            android:id="@+id/til_meaning"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/word_meaning"
             app:boxBackgroundMode="outline"
             app:expandedHintEnabled="false"
-            app:hintEnabled="true">
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_word_char_count">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_add_edit_meaning"
@@ -70,19 +102,27 @@
 
         <TextView
             android:id="@+id/tv_meaning_char_count"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="0"
             android:textAlignment="viewEnd"
             android:textColor="#666666"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_meaning" />
 
         <Button
             android:id="@+id/btn_add_word"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/add"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_meaning_char_count" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

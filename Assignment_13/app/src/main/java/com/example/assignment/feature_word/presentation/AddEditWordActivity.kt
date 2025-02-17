@@ -1,11 +1,17 @@
 package com.example.assignment.feature_word.presentation
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.init
 import com.example.assignment.R
 import com.example.assignment.databinding.ActivityAddEditWordBinding
 import com.example.assignment.feature_word.presentation.add_edit_word.AddEditWordEvent
@@ -19,6 +25,16 @@ class AddEditWordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddEditWordBinding
     private val viewModel: AddEditWordViewModel by viewModels()
+    private var selectedImageUri: Uri? = null
+
+    private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        uri?.let {
+            selectedImageUri = it
+            Glide.with(this)
+                .load(uri)
+                .into(binding.ivAddEditImage)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +48,13 @@ class AddEditWordActivity : AppCompatActivity() {
         if (wordId != -1) {
             viewModel.onEvent(AddEditWordEvent.EnteredWordName(intent.getStringExtra("wordName") ?: ""))
             viewModel.onEvent(AddEditWordEvent.EnteredMeaning(intent.getStringExtra("wordMeaning") ?: ""))
+
+            intent.getStringExtra("imageUri")?.let { uri ->
+                selectedImageUri = Uri.parse(uri)
+                Glide.with(this)
+                    .load(uri)
+                    .into(binding.ivAddEditImage)
+            }
         }
 
         setupObservers()
@@ -80,7 +103,11 @@ class AddEditWordActivity : AppCompatActivity() {
                 ).show()
                 return@setOnClickListener
             }
-            viewModel.onEvent(AddEditWordEvent.SaveWord)
+            viewModel.onEvent(AddEditWordEvent.SaveWord(selectedImageUri?.toString()))
+        }
+
+        binding.btnAddImage.setOnClickListener {
+            imagePickerLauncher.launch("image/*")
         }
     }
 }

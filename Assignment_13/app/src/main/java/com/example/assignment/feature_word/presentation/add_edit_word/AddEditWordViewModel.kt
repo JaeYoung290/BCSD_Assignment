@@ -29,6 +29,9 @@ class AddEditWordViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    private val _imageUri = MutableLiveData<String?>(null)
+    val imageUri: LiveData<String?> = _imageUri
+
     private var currentWordId: Int? = null
 
     init {
@@ -62,6 +65,7 @@ class AddEditWordViewModel @Inject constructor(
                             Word(
                                 word = wordName.value ?: "",
                                 meaning = wordMeaning.value ?: "",
+                                imageUri = event.imageUri,
                                 id = currentWordId
                             )
                         )

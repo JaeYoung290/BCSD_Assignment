@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.recyclerview)
     implementation(libs.kotlin.metadata.jvm)
     implementation(libs.androidx.fragment.ktx)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
 
     implementation(libs.androidx.ui)
