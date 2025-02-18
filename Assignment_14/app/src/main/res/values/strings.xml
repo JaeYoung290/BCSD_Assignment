@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">assignment</string>
+    <string name="search_input_text">검색어를 입력해주세요.</string>
 </resources>
